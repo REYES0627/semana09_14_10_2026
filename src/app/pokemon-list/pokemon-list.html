@@ -1,0 +1,45 @@
+<div class="pokedex-container">
+  <h1>Pokedex</h1>
+
+  <div class="controls">
+    <input
+      type="text"
+      placeholder="Buscar por nombre..."
+      [value]="search()"
+      (input)="search.set($any($event.target).value)"
+    />
+    <select
+      [value]="selectedType()"
+      (change)="selectedType.set($any($event.target).value)"
+    >
+      <option value="">Todos los tipos</option>
+      <option *ngFor="let type of service.getTypeList()" [value]="type">
+        {{ type | titlecase }}
+      </option>
+    </select>
+  </div>
+
+  <div class="pokemon-grid" *ngIf="!loading()">
+    <app-pokemon-card
+      *ngFor="let p of pokemonDetails()"
+      [pokemon]="p"
+      (select)="onSelectPokemon($event)"
+    />
+  </div>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage() <= 1">
+      Anterior
+    </button>
+    <span>Pagina {{ currentPage() }} de {{ totalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage() >= totalPages()">
+      Siguiente
+    </button>
+  </div>
+</div>
+
+<app-pokemon-detail
+  [pokemon]="selectedPokemon()!"
+  [visible]="selectedPokemon() !== null"
+  (close)="closeModal()"
+/>

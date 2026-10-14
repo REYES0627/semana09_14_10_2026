@@ -1,0 +1,42 @@
+<div class="simpsons-container">
+  <h1>The Simpsons</h1>
+
+  <div class="controls">
+    <input
+      type="text"
+      placeholder="Buscar personaje..."
+      [value]="search()"
+      (input)="search.set($any($event.target).value)"
+    />
+  </div>
+
+  <div class="character-grid" *ngIf="!service.loading()">
+    <div
+      class="character-card"
+      *ngFor="let c of service.characters()"
+      (click)="selectCharacter(c)"
+    >
+      <img [src]="c.image" [alt]="c.name" loading="lazy" />
+      <div class="card-body">
+        <h3>{{ c.name }}</h3>
+        <p *ngIf="c.occupation">{{ c.occupation }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button (click)="service.loadCharacters(service.currentPage() - 1)" [disabled]="service.currentPage() <= 1">
+      Anterior
+    </button>
+    <span>Pagina {{ service.currentPage() }} de {{ service.totalPages() }}</span>
+    <button (click)="service.loadCharacters(service.currentPage() + 1)" [disabled]="service.currentPage() >= service.totalPages()">
+      Siguiente
+    </button>
+  </div>
+</div>
+
+<app-simpsons-modal
+  [character]="selectedCharacter()"
+  [visible]="selectedCharacter() !== null"
+  (close)="closeModal()"
+/>

@@ -1,0 +1,49 @@
+<div class="rick-container">
+  <h1>Rick and Morty</h1>
+
+  <div class="controls">
+    <select [value]="statusFilter()" (change)="statusFilter.set($any($event.target).value)">
+      <option value="">Todos los estados</option>
+      <option value="Alive">Vivo</option>
+      <option value="Dead">Muerto</option>
+      <option value="unknown">Desconocido</option>
+    </select>
+    <select [value]="speciesFilter()" (change)="speciesFilter.set($any($event.target).value)">
+      <option value="">Todas las especies</option>
+      <option *ngFor="let s of speciesList()" [value]="s">{{ s }}</option>
+    </select>
+  </div>
+
+  <div class="character-grid" *ngIf="!service.loading()">
+    <div
+      class="character-card"
+      *ngFor="let c of filteredCharacters()"
+      (click)="selectCharacter(c)"
+    >
+      <img [src]="c.image" [alt]="c.name" />
+      <div class="card-body">
+        <h3>{{ c.name }}</h3>
+        <span class="status" [class.alive]="c.status === 'Alive'" [class.dead]="c.status === 'Dead'">
+          {{ c.status }}
+        </span>
+        <p>{{ c.species }} - {{ c.gender }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button (click)="service.prevPage()" [disabled]="service.currentPage() <= 1">
+      Anterior
+    </button>
+    <span>Pagina {{ service.currentPage() }} de {{ service.totalPages() }}</span>
+    <button (click)="service.nextPage()" [disabled]="service.currentPage() >= service.totalPages()">
+      Siguiente
+    </button>
+  </div>
+</div>
+
+<app-rick-morty-modal
+  [character]="selectedCharacter()!"
+  [visible]="selectedCharacter() !== null"
+  (close)="closeModal()"
+/>

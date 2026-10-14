@@ -1,0 +1,139 @@
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.quad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.quad::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quad:hover::before {
+  opacity: 1;
+}
+
+.quad:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.rick-quad {
+  background: linear-gradient(135deg, #0b1a3e 0%, #1a3a6b 50%, #0b2e1a 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.pokemon-quad {
+  background: linear-gradient(135deg, #1a0533 0%, #2d1b69 50%, #1a0533 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite reverse;
+}
+
+.digimon-quad {
+  background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0a1628 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+
+.simpsons-quad {
+  background: linear-gradient(135deg, #ffd90f 0%, #ff6b35 50%, #ffd90f 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+  color: #1a1a2e;
+}
+
+.logo {
+  max-width: 200px;
+  max-height: 120px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.quad:hover .logo {
+  transform: scale(1.05);
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.simpsons-quad .btn {
+  background: rgba(26, 26, 46, 0.9);
+  color: #ffd90f;
+  border-color: #1a1a2e;
+}
+
+.quad:hover .btn {
+  transform: scale(1.05);
+}
+
+.rick-quad .btn:hover {
+  background: rgba(151, 206, 76, 0.3);
+  border-color: #97ce4c;
+  box-shadow: 0 0 20px rgba(151, 206, 76, 0.4);
+}
+
+.pokemon-quad .btn:hover {
+  background: rgba(123, 47, 190, 0.3);
+  border-color: #9b59b6;
+  box-shadow: 0 0 20px rgba(155, 89, 182, 0.4);
+}
+
+.digimon-quad .btn:hover {
+  background: rgba(0, 212, 255, 0.3);
+  border-color: #00d4ff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.simpsons-quad .btn:hover {
+  background: #1a1a2e;
+  color: #ffd90f;
+  border-color: #1a1a2e;
+  box-shadow: 0 0 20px rgba(26, 26, 46, 0.4);
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@media (max-width: 767px) {
+  .home-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+}

@@ -1,0 +1,156 @@
+.simpsons-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffd90f 0%, #ff6b35 50%, #ffd90f 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  padding: 2rem 1rem;
+  color: #1a1a2e;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1a1a2e;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.controls input {
+  padding: 0.5rem 1rem;
+  border: 2px solid #1a1a2e;
+  border-radius: 8px;
+  background: white;
+  color: #1a1a2e;
+  font-size: 1rem;
+  min-width: 250px;
+}
+
+.controls input::placeholder {
+  color: #999;
+}
+
+.controls input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 26, 46, 0.3);
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+.character-card {
+  background: white;
+  border: 3px solid #1a1a2e;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: cardFadeIn 0.5s ease forwards;
+  opacity: 0;
+}
+
+.character-card:nth-child(1) { animation-delay: 0.05s; }
+.character-card:nth-child(2) { animation-delay: 0.1s; }
+.character-card:nth-child(3) { animation-delay: 0.15s; }
+.character-card:nth-child(4) { animation-delay: 0.2s; }
+.character-card:nth-child(5) { animation-delay: 0.25s; }
+.character-card:nth-child(6) { animation-delay: 0.3s; }
+.character-card:nth-child(7) { animation-delay: 0.35s; }
+.character-card:nth-child(8) { animation-delay: 0.4s; }
+.character-card:nth-child(9) { animation-delay: 0.45s; }
+.character-card:nth-child(10) { animation-delay: 0.5s; }
+.character-card:nth-child(11) { animation-delay: 0.55s; }
+.character-card:nth-child(12) { animation-delay: 0.6s; }
+.character-card:nth-child(13) { animation-delay: 0.65s; }
+.character-card:nth-child(14) { animation-delay: 0.7s; }
+.character-card:nth-child(15) { animation-delay: 0.75s; }
+.character-card:nth-child(16) { animation-delay: 0.8s; }
+.character-card:nth-child(17) { animation-delay: 0.85s; }
+.character-card:nth-child(18) { animation-delay: 0.9s; }
+.character-card:nth-child(19) { animation-delay: 0.95s; }
+.character-card:nth-child(20) { animation-delay: 1s; }
+
+.character-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: 0 10px 30px rgba(26, 26, 46, 0.3);
+}
+
+.character-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: #ffd90f;
+}
+
+.card-body {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.card-body h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #1a1a2e;
+}
+
+.card-body p {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #1a1a2e;
+  border-radius: 8px;
+  background: white;
+  color: #1a1a2e;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #1a1a2e;
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

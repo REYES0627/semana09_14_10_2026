@@ -1,0 +1,253 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: popIn 0.4s ease;
+  border: 2px solid var(--pokemon-color, #a8a878);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+.particle {
+  position: absolute;
+  bottom: -20px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pokemon-color);
+  animation: floatUp 3s ease-in infinite;
+  opacity: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  z-index: 2;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-header img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.header-info {
+  flex: 1;
+}
+
+.number {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.types {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  color: white;
+  text-transform: capitalize;
+}
+
+.modal-body {
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.label {
+  color: #888;
+  font-weight: 500;
+}
+
+.value {
+  font-weight: 600;
+  color: white;
+}
+
+.stats {
+  margin-top: 1rem;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-name {
+  width: 80px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.stat-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.stat-value {
+  width: 30px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-400px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Tipo especifico - particulas especiales */
+.type-grass .particle {
+  background: #78c850;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border-radius: 0;
+}
+
+.type-fire .particle {
+  background: #f08030;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.type-water .particle {
+  background: #6890f0;
+  border-radius: 50% 0 50% 50%;
+  transform: rotate(45deg);
+}
+
+.type-electric .particle {
+  background: #f8d030;
+  clip-path: polygon(10% 0%, 40% 0%, 20% 30%, 50% 30%, 10% 100%, 30% 50%, 0% 50%);
+}
+
+.type-ice .particle {
+  background: #98d8d8;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.type-psychic .particle {
+  background: #f85888;
+  animation: floatUp 2.5s ease-in infinite, pulse 1s ease-in-out infinite;
+}
+
+.type-ghost .particle {
+  background: #705898;
+  opacity: 0.3;
+  animation: floatUp 4s ease-in infinite;
+}
+
+.type-dragon .particle {
+  background: #7038f8;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.type-fairy .particle {
+  background: #ee99ac;
+  animation: floatUp 3.5s ease-in infinite, sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}

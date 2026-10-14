@@ -1,0 +1,41 @@
+<div class="digimon-container">
+  <h1>Digimon</h1>
+
+  <div class="controls">
+    <input
+      type="text"
+      placeholder="Buscar por nombre..."
+      [value]="levelFilter()"
+      (input)="levelFilter.set($any($event.target).value)"
+    />
+  </div>
+
+  <div class="digimon-grid" *ngIf="!service.loading()">
+    <div
+      class="digimon-card"
+      *ngFor="let d of filteredDigimons()"
+      (click)="selectDigimon(d)"
+    >
+      <img [src]="d.image" [alt]="d.name" loading="lazy" />
+      <div class="card-body">
+        <h3>{{ d.name }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button (click)="service.loadDigimons(service.currentPage() - 1)" [disabled]="service.currentPage() <= 1">
+      Anterior
+    </button>
+    <span>Pagina {{ service.currentPage() }} de {{ service.totalPages() }}</span>
+    <button (click)="service.loadDigimons(service.currentPage() + 1)" [disabled]="service.currentPage() >= service.totalPages()">
+      Siguiente
+    </button>
+  </div>
+</div>
+
+<app-digimon-modal
+  [digimon]="selectedDigimon()"
+  [visible]="selectedDigimon() !== null"
+  (close)="closeModal()"
+/>

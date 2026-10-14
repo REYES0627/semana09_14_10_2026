@@ -1,0 +1,34 @@
+<div class="modal-overlay" *ngIf="visible()" (click)="onClose()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="scan-line"></div>
+    <button class="close-btn" (click)="onClose()">&times;</button>
+
+    <div class="modal-header">
+      <img [src]="character().image" [alt]="character().name" class="character-img" />
+      <div class="header-info">
+        <div class="time-display">{{ currentTime }}</div>
+        <h2>{{ character().name }}</h2>
+        <div class="status-badge" [style.background]="statusColor">
+          {{ character().status }}
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Especie</span>
+          <span class="value">{{ character().species }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Genero</span>
+          <span class="value">{{ character().gender }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Episodios</span>
+          <span class="value">{{ episodeCount }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="modal-overlay" *ngIf="visible()" (click)="onClose()">
+  <div
+    class="modal"
+    [class]="'type-' + particleType"
+    [style.--pokemon-color]="color"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="particles">
+      <div
+        class="particle"
+        *ngFor="let i of particles"
+        [style.left.%]="(i * 8 + 5) % 100"
+        [style.animation-delay.s]="(i * 0.3) % 2"
+      ></div>
+    </div>
+
+    <button class="close-btn" (click)="onClose()">&times;</button>
+
+    <div class="modal-header">
+      <img [src]="sprite" [alt]="pokemon().name" />
+      <div class="header-info">
+        <span class="number">#{{ pokemon().id }}</span>
+        <h2>{{ pokemon().name | titlecase }}</h2>
+        <div class="types">
+          <span
+            *ngFor="let type of types"
+            class="type-badge"
+            [style.background]="color"
+          >
+            {{ type | titlecase }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="info-row">
+        <span class="label">Altura</span>
+        <span class="value">{{ height }} m</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Peso</span>
+        <span class="value">{{ weight }} kg</span>
+      </div>
+
+      <h3>Estadisticas</h3>
+      <div class="stats">
+        <div class="stat-row" *ngFor="let stat of stats">
+          <span class="stat-name">{{ stat.name }}</span>
+          <div class="stat-bar">
+            <div
+              class="stat-fill"
+              [style.width.%]="(stat.value / 255) * 100"
+              [style.background]="color"
+            ></div>
+          </div>
+          <span class="stat-value">{{ stat.value }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

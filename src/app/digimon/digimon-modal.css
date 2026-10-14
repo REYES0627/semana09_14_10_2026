@@ -1,0 +1,163 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.modal {
+  background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 100%);
+  border: 2px solid rgba(0, 212, 255, 0.5);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 450px;
+  width: 90%;
+  position: relative;
+  overflow: hidden;
+  animation: digivolve 0.6s ease;
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.digivice-ring {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  border: 2px solid rgba(0, 212, 255, 0.1);
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+}
+
+.digivice-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #00d4ff;
+  z-index: 2;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.digimon-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+}
+
+.header-info h2 {
+  color: white;
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tag.level {
+  background: rgba(0, 212, 255, 0.2);
+  color: #00d4ff;
+}
+
+.tag.type {
+  background: rgba(155, 89, 182, 0.2);
+  color: #9b59b6;
+}
+
+.tag.attr {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+
+.modal-body {
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-body h3 {
+  color: #00d4ff;
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+.modal-body p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-list li {
+  padding: 0.3rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes digivolve {
+  0% {
+    transform: scale(0.5) rotate(-10deg);
+    opacity: 0;
+    filter: brightness(3);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+    filter: brightness(2);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
